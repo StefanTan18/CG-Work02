@@ -8,11 +8,21 @@
 #include "matrix.h"
 
 int main() {
-
+  
   screen s;
   struct matrix *edges;
-
+  
   edges = new_matrix(4, 4);
 
+  print_matrix(edges);
+  
+  ident(edges);
+  
+  print_matrix(edges);
+
+  add_point(edges, 1, 2, 3);
+  
+  print_matrix(edges);
+  
   free_matrix( edges );
 }  

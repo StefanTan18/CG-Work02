@@ -27,10 +27,11 @@ void print_matrix(struct matrix *m) {
   
   for (r=0; r < m->rows; r++) {
     for (c=0; c < m->cols; c++) {
-      printf("%lf ", m[r][c]);
+      printf("%lf ", m->m[r][c]);
     }
     printf("\n");
-  } 
+  }
+  printf("\n");
 }
 
 /*-------------- void ident() --------------
@@ -39,6 +40,19 @@ Inputs:  struct matrix *m <-- assumes m is a square matrix
 turns m in to an identity matrix
 */
 void ident(struct matrix *m) {
+  
+  int r, c;
+  
+  for (r=0; r < m->rows; r++) {
+    for (c=0; c < m->cols; c++) {
+      if (r == c) {
+	m->m[r][c] = 1;
+      }
+      else {
+	m->m[r][c] = 0;
+      }
+    }
+  }
 }
 
 
