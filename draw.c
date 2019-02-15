@@ -29,7 +29,7 @@ void add_point( struct matrix * points, double x, double y, double z) {
 /*======== void add_edge() ==========
 Inputs:   struct matrix * points
           int x0, int y0, int z0, int x1, int y1, int z1
-Returns: 
+	  Returns: 
 add the line connecting (x0, y0, z0) to (x1, y1, z1) to points
 should use add_point
 ====================*/
@@ -38,7 +38,6 @@ void add_edge( struct matrix * points,
 	       double x1, double y1, double z1) {
   add_point(points, x0, y0, z0);
   add_point(points, x1, y1, z1);
-  //NOT FINISHED
 }
 
 /*======== void draw_lines() ==========
@@ -50,6 +49,15 @@ Go through points 2 at a time and call draw_line to add that line
 to the screen
 ====================*/
 void draw_lines( struct matrix * points, screen s, color c) {
+  int i;
+  
+  for (i = 0; i < points->lastcol; i += 2) {
+    int x0 = points->m[0][i];
+    int y0 = points->m[1][i];
+    int x1 = points->m[0][i+1];
+    int y1 = points->m[1][i+1];
+    draw_line(x0, y0, x1, y1, s, c);
+  }
 }
 
 
