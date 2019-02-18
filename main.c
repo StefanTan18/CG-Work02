@@ -10,7 +10,7 @@
 int main() {
   
   screen s;
-  struct matrix *m1, *m2;
+  struct matrix *m1, *m2, *edges;
   color c;
 
   c.red = 0;
@@ -47,8 +47,31 @@ int main() {
   matrix_mult(m1, m2);
   print_matrix(m2);
   
-  //display(s);
-  
   free_matrix( m1 );
   free_matrix( m2 );
+
+
+  clear_screen(s);
+  
+  edges = new_matrix(4, 4);
+
+  add_edge(edges, 100, 150, 0, 100, 350, 0);
+  add_edge(edges, 100, 350, 0, 300, 350, 0);
+  add_edge(edges, 300, 350, 0, 300, 150, 0);
+  add_edge(edges, 300, 150, 0, 100, 150, 0);
+  add_edge(edges, 100, 150, 0, 150, 200, 0);
+  add_edge(edges, 150, 200, 0, 150, 400, 0);
+  add_edge(edges, 150, 400, 0, 100, 350, 0);
+  add_edge(edges, 150, 400, 0, 350, 400, 0);
+  add_edge(edges, 350, 400, 0, 300, 350, 0);
+  add_edge(edges, 350, 400, 0, 350, 200, 0);
+  add_edge(edges, 350, 200, 0, 300, 150, 0);
+  add_edge(edges, 350, 200, 0, 150, 200, 0);
+
+  draw_lines(edges, s, c);
+  
+  display(s);
+  save_extension(s, "matrix.png");
+  
+  free_matrix(edges);
 }  
