@@ -10,40 +10,45 @@
 int main() {
   
   screen s;
-  struct matrix *edges;
+  struct matrix *m1, *m2;
   color c;
 
   c.red = 0;
   c.green = MAX_COLOR;
   c.blue = 0;
   
-  edges = new_matrix(4, 4);
+  m1 = new_matrix(4, 4);
+  m2 = new_matrix(4, 2);
 
-  print_matrix(edges);
+  printf("\nPrinting out intialized matrices...\n");
+  printf("m1 =\n");
+  print_matrix(m1);
+  printf("m2 =\n");
+  print_matrix(m2);
   
-  ident(edges);
+  printf("Testing add_edge. Adding (1, 2, 3), (4, 5, 6) m2 =\n");
+  add_edge(m2, 1, 2, 3, 4, 5, 6);
+  print_matrix(m2);
+
+  printf("Testing ident. m1 =\n");
+  ident(m1);
+  print_matrix(m1);
+
+  printf("Testing Matrix mult. m1 * m2 =\n");
+  matrix_mult(m2, m1);
+  print_matrix(m2);
+
+  printf("Testing Matrix mult. m1 =\n");
+  add_edge(m1, 1, 2, 3, 4, 5, 6);
+  add_edge(m1, 7, 8, 9, 10, 11, 12);
+  print_matrix(m1);
+
+  printf("Testing Matrix mult. m1 * m2 =\n");
+  matrix_mult(m1, m2);
+  print_matrix(m2);
   
-  print_matrix(edges);
-
-  add_point(edges, 100, 100, 0);
+  //display(s);
   
-  print_matrix(edges);
-
-  add_point(edges, 100, 400, 0);
-
-  print_matrix(edges);
-
-  add_edge(edges, 100, 400, 0, 400, 400, 0);
-  add_edge(edges, 400, 400, 0, 400, 100, 0);
-  //SEG FAULT HERE BECAUSE OF GROWx
-
-  add_edge(edges, 400, 100, 0, 100, 100, 0);
-
-  print_matrix(edges);
-
-  draw_lines(edges, s, c);
-  
-  display(s);
-  
-  free_matrix( edges );
+  free_matrix( m1 );
+  free_matrix( m2 );
 }  

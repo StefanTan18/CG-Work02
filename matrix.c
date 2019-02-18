@@ -64,9 +64,25 @@ multiply a by b, modifying b to be the product
 a*b -> b
 */
 void matrix_mult(struct matrix *a, struct matrix *b) {
+  struct matrix *res;
+  res = new_matrix(a->rows, b->cols);
+  int r, c, i;
+  double sum;
+  
+  for (r = 0; r < a->rows; r++) {
+    for (c = 0; c < b->cols; c++) {
+      sum = 0.0;
+      for (i = 0; i < a->lastcol; i++) {
+	sum += a->m[r][i] * b->m[i][c];
+      }
+      res->m[r][c] = sum;
+    }
+  }
+  copy_matrix(res, b);
+  free_matrix(res);
 }
 
-
+  
 
 /*===============================================
   These Functions do not need to be modified
